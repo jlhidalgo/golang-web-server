@@ -26,14 +26,17 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hi")
 }
 
-func startHandleFunctions() {
+func initializeHandlerFunctions() {
 	http.HandleFunc("/", serveFile)
 	http.HandleFunc("/increment", incrementCounter)
 	http.HandleFunc("/hi", hiString)
+}
 
-	log.Fatal(http.ListenAndServe(":8081", nil))
+func initializeHandler() {
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 }
 
 func main() {
-	startHandleFunctions()
+	initializeHandlerFunctions()
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
