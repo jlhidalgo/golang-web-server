@@ -4,14 +4,22 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
+	"sync"
 )
+
+var counter int
+var mutex = &sync.Mutex{}
 
 func echoString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello")
 }
 
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Counter")
+	mutex.Lock()
+	counter++
+	fmt.Fprintf(w, strconv.Itoa(counter))
+	mutex.Unlock()
 }
 
 func hiString(w http.ResponseWriter, r *http.Request) {
