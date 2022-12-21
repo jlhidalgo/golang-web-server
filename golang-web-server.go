@@ -15,6 +15,10 @@ func echoString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello")
 }
 
+func serveFile(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, r.URL.Path[1:])
+}
+
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
 	mutex.Lock()
 	counter++
@@ -27,7 +31,7 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", echoString)
+	http.HandleFunc("/", serveFile)
 	http.HandleFunc("/increment", incrementCounter)
 	http.HandleFunc("/hi", hiString)
 
