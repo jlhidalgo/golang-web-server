@@ -2,15 +2,17 @@ package main
 
 import (
 	"fmt"
-	"html"
 	"log"
 	"net/http"
 )
 
+func echoString(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello")
+}
+
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello %q", html.EscapeString(r.URL.Path))
-	})
+
+	http.HandleFunc("/", echoString)
 
 	http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hi")
