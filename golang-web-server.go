@@ -10,6 +10,10 @@ func echoString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello")
 }
 
+func incrementCounter(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Counter")
+}
+
 func hiString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hi")
 }
@@ -17,6 +21,8 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	http.HandleFunc("/", echoString)
+
+	http.HandleFunc("/increment", incrementCounter)
 
 	http.HandleFunc("/hi", hiString)
 
