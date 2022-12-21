@@ -11,10 +11,6 @@ import (
 var counter int
 var mutex = &sync.Mutex{}
 
-func echoString(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello")
-}
-
 func serveFile(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, r.URL.Path[1:])
 }
