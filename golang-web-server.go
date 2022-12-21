@@ -37,6 +37,7 @@ func initializeHandler() {
 }
 
 func main() {
-	initializeHandlerFunctions()
+	//initializeHandlerFunctions()
+	initializeHandler()
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
