@@ -27,11 +27,8 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
 	http.HandleFunc("/", echoString)
-
 	http.HandleFunc("/increment", incrementCounter)
-
 	http.HandleFunc("/hi", hiString)
 
 	log.Fatal(http.ListenAndServe(":8081", nil))
