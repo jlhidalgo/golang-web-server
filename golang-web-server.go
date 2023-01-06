@@ -56,6 +56,7 @@ func contains(options []string, str string) bool {
 	return false
 }
 
+// TODO: organize functions in packages
 func main() {
 	args := os.Args[1:]
 	if len(args) <= 0 || !contains(valid_args, args[0]) {
