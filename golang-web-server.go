@@ -7,6 +7,8 @@ import (
 	"os"
 	"strconv"
 	"sync"
+
+	"golang-web-server.com/web-server/handler"
 )
 
 var counter int
@@ -32,10 +34,6 @@ func initializeHandlerFunctions() {
 	http.HandleFunc("/", serveFile)
 	http.HandleFunc("/increment", incrementCounter)
 	http.HandleFunc("/hi", hiString)
-}
-
-func initializeHandler() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
 }
 
 func printUsage() {
@@ -67,7 +65,7 @@ func main() {
 		case "handler_functions":
 			initializeHandlerFunctions()
 		case "handler_directory":
-			initializeHandler()
+			handler.InitializeHandler()
 		}
 
 		log.Fatal(http.ListenAndServe(":8081", nil))
