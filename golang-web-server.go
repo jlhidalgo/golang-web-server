@@ -5,36 +5,11 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
-	"sync"
 
 	"golang-web-server.com/web-server/handler"
 )
 
-var counter int
-var mutex = &sync.Mutex{}
 var valid_args = []string{"handler_functions", "handler_directory"}
-
-func serveFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, r.URL.Path[1:])
-}
-
-func incrementCounter(w http.ResponseWriter, r *http.Request) {
-	mutex.Lock()
-	counter++
-	fmt.Fprintf(w, strconv.Itoa(counter))
-	mutex.Unlock()
-}
-
-func hiString(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi")
-}
-
-func initializeHandlerFunctions() {
-	http.HandleFunc("/", serveFile)
-	http.HandleFunc("/increment", incrementCounter)
-	http.HandleFunc("/hi", hiString)
-}
 
 func printUsage() {
 	fmt.Println("Usage: ./golang-web-server option")
@@ -63,7 +38,7 @@ func main() {
 
 		switch args[0] {
 		case "handler_functions":
-			initializeHandlerFunctions()
+			handler.InitializeHandlerFunctions()
 		case "handler_directory":
 			handler.InitializeHandler()
 		}
