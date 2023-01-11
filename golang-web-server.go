@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"golang-web-server.com/web-server/handler"
+	"golang-web-server.com/web-server/utils"
 )
 
 var valid_args = []string{"handler_functions", "handler_directory"}
@@ -20,19 +21,9 @@ func printUsage() {
 	fmt.Println("./golang-web-server handler_directory")
 }
 
-func contains(options []string, str string) bool {
-	for _, option := range options {
-		if option == str {
-			return true
-		}
-	}
-	return false
-}
-
-// TODO: organize functions in packages
 func main() {
 	args := os.Args[1:]
-	if len(args) <= 0 || !contains(valid_args, args[0]) {
+	if len(args) <= 0 || !utils.Contains(valid_args, args[0]) {
 		printUsage()
 	} else {
 
