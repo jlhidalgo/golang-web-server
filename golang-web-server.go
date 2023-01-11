@@ -23,7 +23,7 @@ func printUsage() {
 
 func main() {
 	args := os.Args[1:]
-	if len(args) <= 0 || !utils.Contains(valid_args, args[0]) {
+	if len(args) <= 0 || !utils.StringArrayContains(valid_args, args[0]) {
 		printUsage()
 	} else {
 

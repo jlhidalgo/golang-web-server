@@ -1,8 +1,8 @@
 package utils
 
-func Contains(options []string, str string) bool {
-	for _, option := range options {
-		if option == str {
+func StringArrayContains(strArray []string, str string) bool {
+	for _, elem := range strArray {
+		if elem == str {
 			return true
 		}
 	}
