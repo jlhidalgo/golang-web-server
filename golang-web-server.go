@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"golang-web-server.com/web-server/handler"
-	"golang-web-server.com/web-server/utils"
+	"github.com/jlhidalgo/golang-web-server/pkg/handler"
+	"github.com/jlhidalgo/golang-web-server/pkg/utils"
 )
 
 var valid_args = []string{"handler_functions", "handler_directory"}
