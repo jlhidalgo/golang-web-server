@@ -11,7 +11,7 @@ var counter int
 var mutex = &sync.Mutex{}
 
 func serveFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, r.URL.Path[1:])
+	http.ServeFile(w, r, "../../static")
 }
 
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
