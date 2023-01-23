@@ -31,7 +31,9 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 
 // Initializes all the handler functions
 func InitializeHandlerFunctions() {
+	fmt.Println("Initializing the handler functions...")
 	http.HandleFunc("/", serveFile)
 	http.HandleFunc("/increment", incrementCounter)
 	http.HandleFunc("/hi", hiString)
+	fmt.Println("Handler functions have been initialized")
 }
