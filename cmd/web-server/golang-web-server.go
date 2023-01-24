@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -20,5 +21,6 @@ func main() {
 		handler.InitializeHandler()
 	}
 
+	fmt.Println("Listening on localhost:8081...")
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
