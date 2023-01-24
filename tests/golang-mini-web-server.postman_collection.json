@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "9a24d3a1-6241-424e-8843-8731058e95cd",
+		"name": "Golang Mini Web Server",
+		"description": "# Overview\n\nThis collection contains the allowed requests for the Golang Web Server project which is hosted at: [https://github.com/jlhidalgo/golang-web-server](https://github.com/jlhidalgo/golang-web-server)\n\nThese requests will be typically used for:\n1. Running verification over the Golang Web Server in order to confirm that the application is working as expected, and\n2. Providing a guidance on how the Web Server works and what is capable of doing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6679410"
+	},
+	"item": [
+		{
+			"name": "Handler Functions",
+			"item": [
+				{
+					"name": "Get root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Index page is obtained\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Index\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get hi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Hi page is obtained\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Hi\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/hi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"hi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get counter incremented",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var localCounter = pm.collectionVariables.get(\"counter\");",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Counter is provided in body\", function () {",
+									"    var isNumber = !isNaN(pm.response.text());",
+									"    pm.expect(isNumber).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Counter has been incremented\", function () {",
+									"    var newCounter = Number.parseInt(pm.response.text());",
+									"    pm.expect(newCounter).to.be.greaterThan(Number.parseInt(localCounter));",
+									"    pm.collectionVariables.set(\"counter\", newCounter);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/increment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"increment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# Description\n\nThis folder contains the requests that are served when the Golang Web Server is launched with Handler Functions. See more about this in the Readme file of the project: [https://github.com/jlhidalgo/golang-web-server/blob/main/README.md](https://github.com/jlhidalgo/golang-web-server/blob/main/README.md)"
+		},
+		{
+			"name": "FileServer Handler",
+			"item": [
+				{
+					"name": "Get root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Index page is obtained\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Index\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Index page is obtained\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Index\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get index - extension not provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/index",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get home page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Home page is obtained\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"home page\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/homepage.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"homepage.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get hi - page not served",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/hi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"hi"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# Description\n\nThis folder contains the requests that are served when the Golang Web Server is launched with the FileServer handler option. See more about this in the Readme file of the project: [https://github.com/jlhidalgo/golang-web-server/blob/main/README.md](https://github.com/jlhidalgo/golang-web-server/blob/main/README.md)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "counter",
+			"value": "0",
+			"type": "string"
+		}
+	]
+}
