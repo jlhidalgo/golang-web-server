@@ -42,7 +42,7 @@ This is optional, install it if you want to run the tests
     cd cmd/web-server
     go build golang-web-server.go
     ```
-    This should generate a binary filed named `golang-web-server` in the current working directory.
+    This should generate a binary file named `golang-web-server` in the current working directory.
 
 ### Executing program
 
@@ -71,4 +71,10 @@ This is optional, install it if you want to run the tests
 
 ### Testing
 
+#### Web browser
 
+Open a Web browser and go to http://localhost:8081. The `index` page should be loaded if everything is working as expected. Examine the source code for other requests that can be processed by the Web server.
+
+#### Postman
+
+Import the [collection](./tests/golang-mini-web-server.postman_collection.json) into Postman and then open the `Golang Mini Web Server` collection. The requests of this collection are grouped into two different folders, one is for handler functions implementation and the othe one for FileServer handler implementation. 
