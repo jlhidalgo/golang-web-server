@@ -80,3 +80,6 @@ Open a Web browser and go to http://localhost:8081. The `index` page should be l
 #### Postman
 
 Import the [collection](./tests/golang-mini-web-server.postman_collection.json) into Postman and then open the `Golang Mini Web Server` collection. The requests of this collection are grouped into two different folders, one is for handler functions implementation and the other one for FileServer handler implementation. You can run the requests within the folder that matches the current mode of the Web server.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details
