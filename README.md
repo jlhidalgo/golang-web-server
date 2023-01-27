@@ -8,7 +8,7 @@ This project implements a very basic Web Server using nothing else than the [Go 
 * listen to a specific port for incoming HTTP requests, and 
 * process the requests and then reply with the corresponding HTTP responses.
 
-The server can be launched in two different ways and this will determine how it will process the requests:
+The application can serve the requests by two different ways:
 * handler functions: the application registers individual functions to process the requests depending on specific patterns.
 * FileServer handler: Serves HTTP requests with the contents of the file system rooted at root.
 
@@ -18,10 +18,10 @@ This repository also includes a [Postman collection](/tests/golang-mini-web-serv
 
 ### Dependencies
 
-This is required for compiling the application:
+This is required for building and compiling the application:
 * Go version 1.18.x or higher
 
-This is optional, install it if you want to run the tests
+Optionally you will need Postman if you want to run the tests provided [here](/tests/golang-mini-web-server.postman_collection.json).
 * Postman
 
 ### Installing
@@ -37,16 +37,16 @@ This is optional, install it if you want to run the tests
     ```golang
     "module_name/pkg/handler"
     ```
-5. Compile the application to ensure everything works fine:
+5. Compile and build the application to ensure everything works fine:
     ```bash
     cd cmd/web-server
     go build golang-web-server.go
     ```
     This should generate a binary file named `golang-web-server` in the current working directory.
 
-### Executing program
+### Executing the program
 
-* Run the `golang-web-server` binary file directly:
+* The simplest way is to run the `golang-web-server` binary file directly:
     ```bash
     ./golang-web-server
     ```
@@ -56,9 +56,9 @@ This is optional, install it if you want to run the tests
     Handler functions have been initialized
     Listening on localhost:8081...
     ```
-**Note**: By default, the application will be executed using handler functions.
+**Note**: By default, the application will be executed using handler functions and will listen to port 8081.
 
-* Run the application with FileServer handler:
+* Alternatively you can also run the application with FileServer handler:
     ```bash
     ./golang-web-server -use-handler-functions=false
     ```
@@ -71,10 +71,12 @@ This is optional, install it if you want to run the tests
 
 ### Testing
 
+There are two approaches for interacting and testing the application, this can be done through a Web browser or Postman.
+
 #### Web browser
 
-Open a Web browser and go to http://localhost:8081. The `index` page should be loaded if everything is working as expected. Examine the source code for other requests that can be processed by the Web server.
+Open a Web browser and go to http://localhost:8081. The `index` page should be loaded if everything is working as expected. Examine the source code for the requests that can be processed by the Web server, these vary depending on how the application is serving the requests (handler functions or FileServer handler).
 
 #### Postman
 
-Import the [collection](./tests/golang-mini-web-server.postman_collection.json) into Postman and then open the `Golang Mini Web Server` collection. The requests of this collection are grouped into two different folders, one is for handler functions implementation and the othe one for FileServer handler implementation. 
+Import the [collection](./tests/golang-mini-web-server.postman_collection.json) into Postman and then open the `Golang Mini Web Server` collection. The requests of this collection are grouped into two different folders, one is for handler functions implementation and the other one for FileServer handler implementation. You can run the requests within the folder that matches the current mode of the Web server.
