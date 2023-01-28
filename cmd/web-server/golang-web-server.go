@@ -2,25 +2,24 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"log"
-	"net/http"
 
-	"github.com/jlhidalgo/golang-web-server/pkg/handler"
+	"github.com/jlhidalgo/golang-web-server/configs"
+	"github.com/jlhidalgo/golang-web-server/pkg/mhttp"
 )
 
 var useHandlerFunctions bool
 
 func main() {
-	flag.BoolVar(&useHandlerFunctions, "use-handler-functions", true, "Runs the Web Browser with handler functions")
+	flag.BoolVar(&useHandlerFunctions, "use-handler-functions", true, "Runs the Web Browser with handler functions, use false to run it in FileServer mode.")
 	flag.Parse()
 
-	if useHandlerFunctions {
-		handler.InitializeHandlerFunctions()
-	} else {
-		handler.InitializeHandler()
-	}
+	server := mhttp.NewServer(configs.SERVER_STATIC_DIRECTORY, configs.SERVER_URL, configs.SERVER_PORT)
 
-	fmt.Println("Listening on localhost:8081...")
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	if useHandlerFunctions {
+		server.InitializeHandlerFunctions()
+	} else {
+		server.InitializeFileServer()
+	}
+	server.ListenAndServe()
+
 }
