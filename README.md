@@ -33,22 +33,28 @@ Optionally you will need Postman if you want to run the tests provided [here](/t
     go mod init module_name
     go mod vendor
     ```
-4. Update the package reference in the *import* section inside the `cmd/web-server-golang-web-server.go` file with the *module_name* that you used in the previous step:
+4. Update the package reference in the *import* section inside the `cmd/web-server/golang-web-server.go` file with the *module_name* that you used in the previous step:
     ```golang
     "module_name/pkg/handler"
     ```
-5. Compile and build the application to ensure everything works fine:
+5. Compile and build the application to ensure everything works fine.
+    
+    In Unix-like systems just execute this script:
     ```bash
-    cd cmd/web-server
-    go build golang-web-server.go
+    ./scripts/build.sh
     ```
-    This should generate a binary file named `golang-web-server` in the current working directory.
+
+    Or you can just execute this command as well:
+    ```bash
+    go build -o ./bin/web-server cmd/web-server/golang-web-server.go
+    ```
+    This should generate a binary file named `web-server` in the `bin` directory.
 
 ### Executing the program
 
-* The simplest way is to run the `golang-web-server` binary file directly:
+* The simplest way is to run the `web-server` binary file directly:
     ```bash
-    ./golang-web-server
+    ./bin/web-server
     ```
     Expected outcome is:
     ```bash
@@ -60,7 +66,7 @@ Optionally you will need Postman if you want to run the tests provided [here](/t
 
 * Alternatively you can also run the application with FileServer handler:
     ```bash
-    ./golang-web-server -use-handler-functions=false
+    ./bin/web-server -use-handler-functions=false
     ```
     Expected outcome is:
     ```bash
