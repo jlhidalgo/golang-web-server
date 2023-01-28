@@ -9,6 +9,8 @@ import (
 	"github.com/jlhidalgo/golang-web-server/pkg/handler"
 )
 
+const staticDirectory string = "./web/static"
+
 var useHandlerFunctions bool
 
 func main() {
@@ -16,9 +18,9 @@ func main() {
 	flag.Parse()
 
 	if useHandlerFunctions {
-		handler.InitializeHandlerFunctions()
+		handler.InitializeHandlerFunctions(staticDirectory)
 	} else {
-		handler.InitializeHandler()
+		handler.InitializeHandler(staticDirectory)
 	}
 
 	fmt.Println("Listening on localhost:8081...")

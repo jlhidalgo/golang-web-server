@@ -9,10 +9,11 @@ import (
 
 var counter int
 var mutex = &sync.Mutex{}
+var staticDirectory string
 
 // Replies to the request with the contents of the named file or directory
 func serveFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./web/static")
+	http.ServeFile(w, r, staticDirectory)
 }
 
 // Increments a counter every time the '/increment' page is requested
@@ -30,7 +31,8 @@ func hiString(w http.ResponseWriter, r *http.Request) {
 }
 
 // Initializes all the handler functions
-func InitializeHandlerFunctions() {
+func InitializeHandlerFunctions(staticDir string) {
+	staticDirectory = staticDir
 	fmt.Println("Initializing the handler functions...")
 	http.HandleFunc("/", serveFile)
 	http.HandleFunc("/increment", incrementCounter)

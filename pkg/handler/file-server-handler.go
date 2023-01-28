@@ -6,8 +6,8 @@ import (
 )
 
 // returns a handler that serves HTTP requests with the contents of the file system rooted at root
-func InitializeHandler() {
+func InitializeHandler(staticDirectory string) {
 	fmt.Println("Initializing handler with FileServer")
-	http.Handle("/", http.FileServer(http.Dir("./web/static")))
+	http.Handle("/", http.FileServer(http.Dir(staticDirectory)))
 	fmt.Println("Handler has been initialized")
 }
