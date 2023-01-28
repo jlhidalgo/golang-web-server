@@ -36,8 +36,9 @@ func (fs ServerConfig) InitializeFileServer() {
 
 // starts listenning the port and serves the requests
 func (fs ServerConfig) ListenAndServe() {
-	fmt.Println("Listening on localhost:8081...")
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	serverUrl := fs.url + ":" + fs.port
+	fmt.Printf("Listening on %s...\n", serverUrl)
+	log.Fatal(http.ListenAndServe(serverUrl, nil))
 }
 
 // Initializes all the handler functions
