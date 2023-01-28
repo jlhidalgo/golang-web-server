@@ -12,7 +12,7 @@ var mutex = &sync.Mutex{}
 
 // Replies to the request with the contents of the named file or directory
 func serveFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "../../static")
+	http.ServeFile(w, r, "../../web/static")
 }
 
 // Increments a counter every time the '/increment' page is requested
