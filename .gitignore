@@ -15,4 +15,4 @@
 # vendor/
 
 # Binary built by Go for this code
-golang-web-server
+bin
