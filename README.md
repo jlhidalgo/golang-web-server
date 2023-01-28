@@ -88,4 +88,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Inspiration, code snippets, etc.
 
 * [Creating a simple Web server with Golang](https://tutorialedge.net/golang/creating-simple-web-server-with-golang/)
-* [A simple README.md temmplate](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+* [A simple README.md template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+* [Standard Go project layout](https://github.com/golang-standards/project-layout)
