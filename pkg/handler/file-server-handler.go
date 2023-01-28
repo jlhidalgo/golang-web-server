@@ -8,6 +8,6 @@ import (
 // returns a handler that serves HTTP requests with the contents of the file system rooted at root
 func InitializeHandler() {
 	fmt.Println("Initializing handler with FileServer")
-	http.Handle("/", http.FileServer(http.Dir("../../static")))
+	http.Handle("/", http.FileServer(http.Dir("../../web/static")))
 	fmt.Println("Handler has been initialized")
 }
