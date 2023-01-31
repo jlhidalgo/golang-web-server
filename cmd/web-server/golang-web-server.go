@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 
 	"github.com/jlhidalgo/golang-web-server/configs"
 	"github.com/jlhidalgo/golang-web-server/pkg/mhttp"
@@ -14,11 +15,16 @@ func main() {
 	flag.Parse()
 
 	server := mhttp.NewServer(configs.SERVER_STATIC_DIRECTORY, configs.SERVER_URL, configs.SERVER_PORT)
+	var err error
 
 	if useHandlerFunctions {
-		server.InitializeHandlerFunctions()
+		err = server.InitializeHandlerFunctions()
 	} else {
-		server.InitializeFileServer()
+		err = server.InitializeFileServer()
+	}
+
+	if err != nil {
+		log.Fatal(err)
 	}
 	server.ListenAndServe()
 
