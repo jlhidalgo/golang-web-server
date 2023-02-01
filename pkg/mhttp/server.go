@@ -33,8 +33,8 @@ func NewServer(staticDir string, url string, port string) ServerConfig {
 func (fs ServerConfig) InitializeFileServer() error {
 	fmt.Println("Initializing handler with FileServer")
 
-	if !folderExists(fs.staticDirectory) {
-		return errors.New("'static' folder does not exist: " + fs.staticDirectory)
+	if err := validateFolder(fs.staticDirectory); err != nil {
+		return errors.New("couldn't validate static folder, error: " + err.Error())
 	}
 
 	http.Handle("/", http.FileServer(http.Dir(fs.staticDirectory)))
@@ -54,8 +54,8 @@ func (fs ServerConfig) InitializeHandlerFunctions() error {
 	staticDirectory = fs.staticDirectory
 	fmt.Println("Initializing the handler functions...")
 
-	if !folderExists(fs.staticDirectory) {
-		return errors.New("'static' folder does not exist: " + fs.staticDirectory)
+	if err := validateFolder(fs.staticDirectory); err != nil {
+		return errors.New("couldn't validate static folder, error: " + err.Error())
 	}
 
 	http.HandleFunc("/", serveFile)
@@ -65,13 +65,20 @@ func (fs ServerConfig) InitializeHandlerFunctions() error {
 	return nil
 }
 
-func folderExists(folderPath string) bool {
+func validateFolder(folderPath string) error {
 	fileInfo, err := os.Stat(folderPath)
+
 	if err != nil && os.IsNotExist(err) {
-		return false
+		return errors.New("folder does not exists: " + folderPath)
 	}
-	if fileInfo != nil {
-		return fileInfo.IsDir()
+
+	if err != nil || fileInfo == nil {
+		return errors.New("an error occurred when validating path: " + folderPath)
 	}
-	return false
+
+	if fileInfo != nil && !fileInfo.IsDir() {
+		return errors.New("provided path is not a directory: " + folderPath)
+	}
+
+	return nil
 }
