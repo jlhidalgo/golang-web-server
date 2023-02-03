@@ -68,16 +68,12 @@ func (fs ServerConfig) InitializeHandlerFunctions() error {
 func validateFolder(folderPath string) error {
 	fileInfo, err := os.Stat(folderPath)
 
-	if err != nil && os.IsNotExist(err) {
-		return errors.New("folder does not exists: " + folderPath)
-	}
-
-	if err != nil || fileInfo == nil {
-		return errors.New("an error occurred when validating path: " + folderPath)
+	if err != nil {
+		return err
 	}
 
 	if fileInfo != nil && !fileInfo.IsDir() {
-		return errors.New("provided path is not a directory: " + folderPath)
+		return errors.New(folderPath + " is not a directory")
 	}
 
 	return nil
