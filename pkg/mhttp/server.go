@@ -73,7 +73,7 @@ func validateFolder(folderPath string) error {
 	}
 
 	if fileInfo != nil && !fileInfo.IsDir() {
-		return errors.New(folderPath + " is not a directory")
+		return fmt.Errorf("%s : is not a directory", folderPath)
 	}
 
 	return nil
